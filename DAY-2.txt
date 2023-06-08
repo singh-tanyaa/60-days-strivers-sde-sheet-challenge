@@ -1,0 +1,92 @@
+#DAY-2
+
+Q1}Print PASCAL'S 
+
+#include <bits/stdc++.h>
+
+vector<vector<long long int>> printPascal(int n) 
+{
+  // Write your code here.
+   vector<vector<long long int>>ans;
+  for(int i=0;i<n;i++)
+  {
+    vector< long long int>v(i+1,1);
+    for (int j = 1; j < i; j++) 
+    {
+      v[j] = ans[i - 1][j] + ans[i - 1][j - 1];
+    }
+    ans.push_back(v);
+  }
+  return ans;
+  } ;
+
+Q2}Next Permutation
+
+#include <bits/stdc++.h> 
+vector<int> nextPermutation(vector<int> &permutation, int n)
+{
+    //  Write your code here.
+    int k,l;
+    for(k=n-2;k>=0;k--)
+    {
+        if(permutation[k] < permutation[k+1])
+        {
+            break;
+        }
+    }
+    if (k < 0)
+     {
+      reverse(permutation.begin(), permutation.end());
+    } else
+     {
+      for (l = n - 1; l > k; l--)
+       {
+        if (permutation[l] > permutation[k]) {
+          break;
+        }
+      }
+      swap(permutation[k], permutation[l]);
+      reverse(permutation.begin() + k + 1, permutation.end());
+    }
+ return permutation;
+ };
+
+
+
+Q3}Sort 012
+
+
+#include <bits/stdc++.h> 
+
+   //   Write your code here
+
+   void swap(int arr[], int i, int j) {
+     int temp = arr[i];
+     arr[i] = arr[j];
+     arr[j] = temp;
+   }
+   void sort012(int *arr, int n)
+  {
+        //Write your code here
+        int left = 0;
+        int mid= 0;
+        int right = n-1;
+        while(mid<=right)
+        {
+            if(arr[mid]==0){
+                swap(arr,mid,left);
+                left++;
+                mid++;
+            }
+           else if(arr[mid]==1){
+                mid++;
+
+            }
+           else if(arr[mid]==2){
+                swap(arr,mid,right);
+                right--;
+             }
+       }
+}   
+
+ 
